@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean id="fileFeeder" class="ru.tander.tasks.task3.filefeeder.FileFeederImpl"/>
+
+  <bean id="dataAggregator" class="ru.tander.tasks.task3.dataaggregator.DataAggregatorImpl"/>
+
+  <bean id="fileProcessor" class="ru.tander.tasks.task3.fileprocessor.FileProcessorImpl">
+    <property name="dataAggregator" ref="dataAggregator"/>
+  </bean>
+
+  <bean id="fileProcessorManager" class="ru.tander.tasks.task3.fileprocessor.FileProcessorManager">
+    <property name="fileFeeder" ref="fileFeeder"/>
+    <property name="fileProcessor" ref="fileProcessor"/>
+    <property name="dataAggregator" ref="dataAggregator"/>
+  </bean>
+</beans>
